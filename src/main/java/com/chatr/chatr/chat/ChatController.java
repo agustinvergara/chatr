@@ -3,9 +3,8 @@ package com.chatr.chatr.chat;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
-
-import java.util.Calendar;
 
 @Controller
 public class ChatController {
@@ -24,10 +23,10 @@ public class ChatController {
     @SendTo("/topic/public")
     public ChatMessage addUser(
             @Payload ChatMessage chatMessage,
-            SimpleMessageHeaderAccessor headerAccessor
+            SimpMessageHeaderAccessor headerAccessor
     ) {
         //Add username in websocket session
-        headerAccessor.getSessionAtributes().put("username", chatMessage.getSender());
+        headerAccessor.getSessionAttributes().put("username", chatMessage);
         return chatMessage;
     }
 

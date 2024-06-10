@@ -2,17 +2,16 @@ package com.chatr.chatr.chat;
 
 import lombok.*;
 
-import java.awt.*;
+
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 
+public class ChatMessage{
 
-public class ChatMessage {
-
-    private String content;
-    private String sender;
-    private MessageType type;
+	private String content;
+    public String sender;
+    public MessageType type;
 }
